@@ -1,0 +1,73 @@
+/* Поля ввода (Фикс белого текста) */
+.cart-input {
+    background: #1a1a1a !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    padding: 1rem 1.25rem !important;
+    border-radius: 16px !important;
+    width: 100% !important;
+    outline: none !important;
+    color: #ffffff !important; 
+    font-size: 0.9rem !important;
+    transition: 0.3s;
+}
+
+.cart-input::placeholder {
+    color: #666 !important;
+}
+
+.cart-input:focus {
+    border-color: #6366f1 !important;
+    background: #222 !important;
+}
+
+/* Карточки товаров в корзине */
+.cart-item-row {
+    background: rgba(255,255,255,0.03);
+    padding: 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.cart-item-info h4 {
+    font-size: 0.85rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.cart-item-price {
+    font-size: 0.9rem;
+    font-weight: 900;
+    color: #6366f1;
+}
+
+/* Кнопки категорий */
+.cat-card {
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 1.5rem 0.5rem;
+    border-radius: 24px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.cat-card i { font-size: 1.5rem; color: #444; }
+.cat-card span { font-size: 0.65rem; font-weight: 900; letter-spacing: 0.5px; }
+
+.active-cat {
+    background: #6366f1 !important;
+    border-color: #818cf8 !important;
+}
+.active-cat i, .active-cat span { color: white !important; }
+
+.page-section { animation: slideUp 0.4s ease; }
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
