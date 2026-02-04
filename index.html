@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ULTRA TECH | Premium Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#050505] text-white font-sans selection:bg-indigo-500/30">
+
+    <header class="fixed top-0 w-full z-[100] border-b border-white/5 bg-black/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <h1 class="text-xl font-black tracking-tighter cursor-pointer" onclick="showPage('home')">
+                ULTRA<span class="text-indigo-500">TECH</span>
+            </h1>
+            <button onclick="showPage('cart')" class="relative p-2 text-gray-400">
+                <i class="fa-solid fa-bag-shopping text-2xl"></i>
+                <span id="cart-count-badge" class="absolute top-0 right-0 bg-indigo-600 text-[10px] w-5 h-5 rounded-full flex items-center justify-center text-white font-bold">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content" class="pt-20 min-h-screen">
+        
+        <section id="page-home" class="page-section px-4">
+            <div class="max-w-7xl mx-auto py-8">
+                <div class="relative rounded-[32px] overflow-hidden bg-gradient-to-br from-indigo-900/40 to-black border border-white/10 p-8 mb-8 text-center shadow-2xl">
+                    <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase leading-tight">Лучшая техника <br> <span class="text-indigo-500">в твоих руках</span></h2>
+                    <button onclick="showPage('catalog')" class="bg-white text-black px-10 py-4 rounded-2xl font-black hover:bg-indigo-600 hover:text-white transition-all transform active:scale-95 shadow-xl">
+                        В КАТАЛОГ
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white/5 p-6 rounded-[24px] border border-white/5 flex items-center gap-4">
+                        <div class="bg-indigo-500/20 p-3 rounded-xl"><i class="fa-solid fa-truck text-indigo-500"></i></div>
+                        <div><h3 class="font-bold">Вся Россия</h3><p class="text-gray-500 text-xs">Доставка в любой регион</p></div>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-[24px] border border-white/5 flex items-center gap-4">
+                        <div class="bg-indigo-500/20 p-3 rounded-xl"><i class="fa-solid fa-gem text-indigo-500"></i></div>
+                        <div><h3 class="font-bold">Гарантия качества</h3><p class="text-gray-500 text-xs">Только оригинал</p></div>
+                    </div>
+                    <div class="bg-white/5 p-6 rounded-[24px] border border-white/5 flex items-center gap-4">
+                        <div class="bg-indigo-500/20 p-3 rounded-xl"><i class="fa-solid fa-headset text-indigo-500"></i></div>
+                        <div><h3 class="font-bold">Поддержка</h3><p class="text-gray-500 text-xs">Всегда на связи</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-catalog" class="page-section hidden px-4">
+            <div class="max-w-7xl mx-auto py-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
+                    <div onclick="renderProducts('Phones')" class="cat-card"><i class="fa-solid fa-mobile-screen"></i><span>ТЕЛЕФОНЫ</span></div>
+                    <div onclick="renderProducts('Audio')" class="cat-card"><i class="fa-solid fa-headphones"></i><span>НАУШНИКИ</span></div>
+                    <div onclick="renderProducts('Tablets')" class="cat-card"><i class="fa-solid fa-tablet"></i><span>ПЛАНШЕТЫ</span></div>
+                    <div onclick="renderProducts('Accessories')" class="cat-card"><i class="fa-solid fa-plug"></i><span>АКСЕССУАРЫ</span></div>
+                </div>
+                <div id="products-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            </div>
+        </section>
+
+        <section id="page-item" class="page-section hidden px-4">
+            <div id="product-detail-container"></div>
+        </section>
+
+        <section id="page-cart" class="page-section hidden px-4 pb-32">
+            <div class="max-w-2xl mx-auto py-4">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-black italic">КОРЗИНА</h2>
+                    <button onclick="showPage('catalog')" class="text-indigo-400 text-sm font-bold">← К покупкам</button>
+                </div>
+                
+                <div id="cart-full-list" class="space-y-3 mb-8"></div>
+                
+                <div class="checkout-box bg-[#111] rounded-[32px] p-6 border border-white/10 shadow-2xl">
+                    <div class="space-y-4 mb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" id="order-name" placeholder="Имя и Фамилия" class="cart-input">
+                            <input type="tel" id="order-phone" placeholder="Номер телефона" class="cart-input">
+                        </div>
+                        <input type="text" id="cart-city" placeholder="Ваш город" class="cart-input">
+                        <div class="flex gap-2">
+                            <input type="text" id="promo-input" placeholder="Промокод" class="cart-input">
+                            <button onclick="applyPromo()" class="bg-indigo-600 px-6 rounded-xl font-bold active:scale-95 transition">OK</button>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-6 border-t border-white/5">
+                        <div id="promo-msg" class="text-green-500 text-xs font-bold mb-2 h-4 text-center"></div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-gray-500 font-bold text-xs uppercase tracking-tighter">Итого:</span>
+                            <span id="final-price" class="text-3xl font-black tracking-tighter">0 ₽</span>
+                        </div>
+                        <button onclick="checkout()" class="w-full bg-white text-black py-4 rounded-2xl font-black text-lg hover:bg-indigo-500 hover:text-white transition shadow-xl active:scale-95 uppercase">Оформить заказ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
